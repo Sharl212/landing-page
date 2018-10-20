@@ -4,7 +4,8 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 
-const PORT = env.process.PORT;
+const PORT = process.env.PORT || 4000
+;
 const request = require("request");
 const app = express();
 
