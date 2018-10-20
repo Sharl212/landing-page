@@ -1,0 +1,28 @@
+#title {
+    font-size: 250%;
+    text-align:center;
+}
+
+.center {
+    margin:auto;
+}
+
+.btn-outline-info {
+    color:white !important;
+    text-align: center;
+}
+
+.notify {
+    text-align:center;
+    font-size:150%;
+    border-radius:5%;
+}
+
+.neal-footer.container.row {
+    width:150%
+}
+
+.btn-outline-success {
+    color:white !important;
+    font-size:150% !important; 
+}
