@@ -19860,58 +19860,49 @@
 	  "+1 (123) 456-7890"
 	);
 
-	// const pricingPlan1 = {
-	//   name: "Personal",
-	//   description: "Describe your plans with easy-to-use pricing tables. Each plan provides callbacks to handle visitor clicks.",
-	//   price: "$99",
-	//   features: {
-	//     "Describe pricing plans as JSON": true,
-	//     "Features can be active/inactive": true,
-	//     "Works on mobile": true,
-	//     "Custom callbacks": true,
-	//     "Extra Feature 1": false,
-	//     "Extra Feature 2": false,
-	//   },
-	//   onClick: onSignup,
-	// };
+	var pricingPlan1 = {
+	  name: "Personal",
+	  description: "Describe your plans with easy-to-use pricing tables. Each plan provides callbacks to handle visitor clicks.",
+	  price: "$99",
+	  features: {
+	    "Describe pricing plans as JSON": true,
+	    "Features can be active/inactive": true,
+	    "Works on mobile": true,
+	    "Custom callbacks": true,
+	    "Extra Feature 1": false,
+	    "Extra Feature 2": false
+	  }
+	};
 
-	// const pricingPlan2 = Object.assign({}, pricingPlan1, {
-	//   price: "$499",
-	//   name: "Startup",
-	//   features: Object.assign({}, pricingPlan1.features, {
-	//     "Extra Feature 1": true,
-	//   }),
-	// });
+	var pricingPlan2 = Object.assign({}, pricingPlan1, {
+	  price: "$499",
+	  name: "Startup",
+	  features: Object.assign({}, pricingPlan1.features, {
+	    "Extra Feature 1": true
+	  })
+	});
 
-	// const pricingPlan3 = Object.assign({}, pricingPlan2, {
-	//   price: "$999",
-	//   name: "Enterprise",
-	//   features: Object.assign({}, pricingPlan2.features, {
-	//     "Extra Feature 2": true,
-	//   }),
-	// });
+	var pricingPlan3 = Object.assign({}, pricingPlan2, {
+	  price: "$999",
+	  name: "Enterprise",
+	  features: Object.assign({}, pricingPlan2.features, {
+	    "Extra Feature 2": true
+	  })
+	});
 
-	// const sampleCode = `<Page>
-	//   <Hero><h1>{ /* Content */ }</h1></Hero>
-	//   <Section heading="Hello!">
-	//     <HorizontalSplit padding="md"> { /* Content */ } </HorizontalSplit>
-	//   </Section>
-	//   <Section>
-	//     <Team>
-	//       <TeamMember name="Link" title="Co-founder" imageUrl="img/link.jpg"> { /* Description */ } </TeamMember>
-	//       <TeamMember name="Yoshi" title="Co-founder" imageUrl="img/yoshi.jpg"> { /* Description */ } </TeamMember>
-	//     </Team>
-	//   </Section>
-	//   <Section>
-	//     <PricingTable>
-	//       <PricingPlan {... pricingPlan1} />
-	//       <PricingPlan {... pricingPlan2} />
-	//       <PricingPlan {... pricingPlan3} />
-	//     </PricingTable>
-	//     <SignupInline onSubmit={onSignupCallback}/>
-	//   </Section>
-	// </Page>
-	// `;
+	var sampleCode = "<Page>\n  <Hero><h1>{ /* Content */ }</h1></Hero>\n  <Section heading=\"Hello!\">\n    <HorizontalSplit padding=\"md\"> { /* Content */ } </HorizontalSplit>\n  </Section>\n  <Section>\n    <Team>\n      <TeamMember name=\"Link\" title=\"Co-founder\" imageUrl=\"img/link.jpg\"> { /* Description */ } </TeamMember>\n      <TeamMember name=\"Yoshi\" title=\"Co-founder\" imageUrl=\"img/yoshi.jpg\"> { /* Description */ } </TeamMember>\n    </Team>\n  </Section>\n  <Section>\n    <PricingTable>\n      <PricingPlan {... pricingPlan1} />\n      <PricingPlan {... pricingPlan2} />\n      <PricingPlan {... pricingPlan3} />\n    </PricingTable>\n    <SignupInline onSubmit={onSignupCallback}/>\n  </Section>\n</Page>\n";
+
+	var PayStripe = function PayStripe() {
+	  var email = document.querySelector("input[type='email']").value;
+
+	  _nealReact.Stripe.StripeHandler.open({
+	    name: "Stripe Integration Included",
+	    description: "Like this? Donate $5 <3",
+	    panelLabel: "Donate {{amount}}",
+	    email: email,
+	    amount: 500
+	  });
+	};
 
 	var Test = function (_React$Component) {
 	  _inherits(Test, _React$Component);
@@ -20023,6 +20014,11 @@
 	            "Join us now !"
 	          ),
 	          _react2.default.createElement(
+	            "button",
+	            { className: "btn btn-primary", onClick: PayStripe },
+	            "Stripe Payment"
+	          ),
+	          _react2.default.createElement(
 	            "div",
 	            { className: "neal-signup-inline center col-lg-6 col-md-12" },
 	            this.state.isSubscribed ? _react2.default.createElement(
@@ -20075,6 +20071,27 @@
 	                )
 	              )
 	            )
+	          )
+	        ),
+	        _react2.default.createElement(
+	          _nealReact.Section,
+	          { className: "subhero" },
+	          _react2.default.createElement(
+	            _nealReact.ImageList,
+	            { centered: true },
+	            _react2.default.createElement(_nealReact.ImageListItem, { src: "img/press/cnn-logo.png", url: "http://www.cnn.com" }),
+	            _react2.default.createElement(_nealReact.ImageListItem, { src: "img/press/forbes-logo.png", url: "http://forbes.com/" }),
+	            _react2.default.createElement(_nealReact.ImageListItem, { src: "img/press/theverge-logo.png", url: "http://www.theverge.com/" }),
+	            _react2.default.createElement(_nealReact.ImageListItem, { src: "img/press/techcrunch-logo.jpg", url: "http://techcrunch.com/" })
+	          )
+	        ),
+	        _react2.default.createElement(
+	          _nealReact.Section,
+	          { className: "nopad-bottom" },
+	          _react2.default.createElement(
+	            _nealReact.Code,
+	            { lang: "jsx", block: true },
+	            sampleCode
 	          )
 	        ),
 	        _react2.default.createElement(
@@ -20154,6 +20171,75 @@
 	                null,
 	                "Because you are relying on react.js and third-party integration you don't need a server to host your landing page. Simply upload it to an Amazon S3 bucket, enable website hosting, and it's ready to go!"
 	              )
+	            )
+	          )
+	        ),
+	        _react2.default.createElement(
+	          _nealReact.Section,
+	          null,
+	          _react2.default.createElement(
+	            _nealReact.PricingTable,
+	            null,
+	            _react2.default.createElement(_nealReact.PricingPlan, pricingPlan1),
+	            _react2.default.createElement(_nealReact.PricingPlan, pricingPlan2),
+	            _react2.default.createElement(_nealReact.PricingPlan, pricingPlan3)
+	          )
+	        ),
+	        _react2.default.createElement(
+	          _nealReact.Section,
+	          null,
+	          _react2.default.createElement(
+	            _nealReact.CustomerQuotes,
+	            null,
+	            _react2.default.createElement(
+	              _nealReact.CustomerQuote,
+	              { name: "Paul Graham", title: "YC", imageUrl: "img/people/paulgraham.jpg" },
+	              _react2.default.createElement(
+	                "p",
+	                null,
+	                "What I tell founders is not to sweat the business model too much at first. The most important task at first is to build something people want. If you don't do that, it won't matter how clever your business model is."
+	              )
+	            ),
+	            _react2.default.createElement(
+	              _nealReact.CustomerQuote,
+	              { name: "Elon Musk", imageUrl: "img/people/elonmusk.jpg" },
+	              _react2.default.createElement(
+	                "p",
+	                null,
+	                "I came to the conclusion that we should aspire to increase the scope and scale of human consciousness in order to better understand what questions to ask. Really, the only thing that makes sense is to strive for greater divlective enlightenment."
+	              )
+	            ),
+	            _react2.default.createElement(
+	              _nealReact.CustomerQuote,
+	              { name: "Reid Hoffman", title: "Linkedin", imageUrl: "img/people/reidhoffman.jpg" },
+	              _react2.default.createElement(
+	                "p",
+	                null,
+	                "If you are not embarrassed by the first version of your product, you've launched too late."
+	              )
+	            )
+	          )
+	        ),
+	        _react2.default.createElement(
+	          _nealReact.Section,
+	          null,
+	          _react2.default.createElement(
+	            _nealReact.Team,
+	            null,
+	            _react2.default.createElement(
+	              _nealReact.TeamMember,
+	              { name: "Member 1", title: "Co-founder", imageUrl: "img/people/grumpycat.jpg" },
+	              "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+	            ),
+	            _react2.default.createElement(
+	              _nealReact.TeamMember,
+	              { name: "Member 2", title: "Co-founder", imageUrl: "img/people/boo.jpg" },
+	              "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+	            ),
+	            _react2.default.createElement(
+	              _nealReact.TeamMember,
+	              { name: "Member 3", title: "Co-founder", imageUrl: "img/people/panda.jpg" },
+	              "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
 	            )
 	          )
 	        ),

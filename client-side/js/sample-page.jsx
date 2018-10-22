@@ -32,58 +32,69 @@ const businessAddress = (
   </address>
 );
 
-// const pricingPlan1 = {
-//   name: "Personal",
-//   description: "Describe your plans with easy-to-use pricing tables. Each plan provides callbacks to handle visitor clicks.",
-//   price: "$99",
-//   features: {
-//     "Describe pricing plans as JSON": true,
-//     "Features can be active/inactive": true,
-//     "Works on mobile": true,
-//     "Custom callbacks": true,
-//     "Extra Feature 1": false,
-//     "Extra Feature 2": false,
-//   },
-//   onClick: onSignup,
-// };
+const pricingPlan1 = {
+  name: "Personal",
+  description: "Describe your plans with easy-to-use pricing tables. Each plan provides callbacks to handle visitor clicks.",
+  price: "$99",
+  features: {
+    "Describe pricing plans as JSON": true,
+    "Features can be active/inactive": true,
+    "Works on mobile": true,
+    "Custom callbacks": true,
+    "Extra Feature 1": false,
+    "Extra Feature 2": false,
+  }
+};
 
-// const pricingPlan2 = Object.assign({}, pricingPlan1, {
-//   price: "$499",
-//   name: "Startup",
-//   features: Object.assign({}, pricingPlan1.features, {
-//     "Extra Feature 1": true,
-//   }),
-// });
+const pricingPlan2 = Object.assign({}, pricingPlan1, {
+  price: "$499",
+  name: "Startup",
+  features: Object.assign({}, pricingPlan1.features, {
+    "Extra Feature 1": true,
+  }),
+});
 
-// const pricingPlan3 = Object.assign({}, pricingPlan2, {
-//   price: "$999",
-//   name: "Enterprise",
-//   features: Object.assign({}, pricingPlan2.features, {
-//     "Extra Feature 2": true,
-//   }),
-// });
+const pricingPlan3 = Object.assign({}, pricingPlan2, {
+  price: "$999",
+  name: "Enterprise",
+  features: Object.assign({}, pricingPlan2.features, {
+    "Extra Feature 2": true,
+  }),
+});
 
-// const sampleCode = `<Page>
-//   <Hero><h1>{ /* Content */ }</h1></Hero>
-//   <Section heading="Hello!">
-//     <HorizontalSplit padding="md"> { /* Content */ } </HorizontalSplit>
-//   </Section>
-//   <Section>
-//     <Team>
-//       <TeamMember name="Link" title="Co-founder" imageUrl="img/link.jpg"> { /* Description */ } </TeamMember>
-//       <TeamMember name="Yoshi" title="Co-founder" imageUrl="img/yoshi.jpg"> { /* Description */ } </TeamMember>
-//     </Team>
-//   </Section>
-//   <Section>
-//     <PricingTable>
-//       <PricingPlan {... pricingPlan1} />
-//       <PricingPlan {... pricingPlan2} />
-//       <PricingPlan {... pricingPlan3} />
-//     </PricingTable>
-//     <SignupInline onSubmit={onSignupCallback}/>
-//   </Section>
-// </Page>
-// `;
+const sampleCode = `<Page>
+  <Hero><h1>{ /* Content */ }</h1></Hero>
+  <Section heading="Hello!">
+    <HorizontalSplit padding="md"> { /* Content */ } </HorizontalSplit>
+  </Section>
+  <Section>
+    <Team>
+      <TeamMember name="Link" title="Co-founder" imageUrl="img/link.jpg"> { /* Description */ } </TeamMember>
+      <TeamMember name="Yoshi" title="Co-founder" imageUrl="img/yoshi.jpg"> { /* Description */ } </TeamMember>
+    </Team>
+  </Section>
+  <Section>
+    <PricingTable>
+      <PricingPlan {... pricingPlan1} />
+      <PricingPlan {... pricingPlan2} />
+      <PricingPlan {... pricingPlan3} />
+    </PricingTable>
+    <SignupInline onSubmit={onSignupCallback}/>
+  </Section>
+</Page>
+`;
+
+const PayStripe = () =>{
+  let email = document.querySelector("input[type='email']").value
+
+  Stripe.StripeHandler.open({
+    name: "Stripe Integration Included",
+    description: "Like this? Donate $5 <3",
+    panelLabel: "Donate {{amount}}",
+    email: email,
+    amount: 500,
+  });
+}
 class Test extends React.Component {
   constructor() {
     super()
@@ -168,6 +179,7 @@ class Test extends React.Component {
           </video>
           </div>
           <p className="col-12" id="title">Join us now !</p>
+          <button className="btn btn-primary" onClick={PayStripe}>Stripe Payment</button>
           <div className="neal-signup-inline center col-lg-6 col-md-12">
             {
               this.state.isSubscribed ?
@@ -199,18 +211,18 @@ class Test extends React.Component {
           </div>
         </Hero>
 
-        {/* <Section className="subhero">
+      <Section className="subhero">
         <ImageList centered>
           <ImageListItem src="img/press/cnn-logo.png" url="http://www.cnn.com"/>
           <ImageListItem src="img/press/forbes-logo.png" url="http://forbes.com/"/>
           <ImageListItem src="img/press/theverge-logo.png" url="http://www.theverge.com/"/>
           <ImageListItem src="img/press/techcrunch-logo.jpg" url="http://techcrunch.com/"/>
         </ImageList>
-      </Section> */}
+      </Section>
 
-        {/* <Section className="nopad-bottom">
+       <Section className="nopad-bottom">
         <Code lang="jsx" block>{sampleCode}</Code>
-      </Section> */}
+      </Section>
 
         <Section>
           <HorizontalSplit padding="md">
@@ -235,7 +247,7 @@ class Test extends React.Component {
         </Section>
 
 
-        {/* 
+        
       <Section>
         <PricingTable>
           <PricingPlan {... pricingPlan1} />
@@ -271,7 +283,7 @@ class Test extends React.Component {
           </TeamMember>
         </Team>
       </Section>
-  */}
+
 
         <Footer brandName={brandName}
           facebookUrl="http://www.facebook.com"
