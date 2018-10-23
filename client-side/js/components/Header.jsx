@@ -8,7 +8,7 @@ class Header extends React.Component {
 
     this.state = {
       alreadyAmember: false,  // ! CHANGE LATER
-      isSubscribed: true
+      isSubscribed: false
     }
 
     this.onSignup = this.onSignup.bind(this)
