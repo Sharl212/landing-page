@@ -1,5 +1,5 @@
 import React from "react";
-import SamplePage from "./sample-page.jsx";
+import MainPage from "./main-page.jsx";
 import ReactDOM from "react-dom";
 import { Router, IndexRoute, Route, Link, Redirect, browserHistory } from "react-router";
 import { App } from "neal-react";
@@ -21,8 +21,8 @@ class SampleApp extends React.Component {
 ReactDOM.render((
   <Router history={ browserHistory }>
     <Route path="/" component={ SampleApp } history={ browserHistory }>
-      <IndexRoute name="home" component={ SamplePage }/>
-      <Route path="*" component={ SamplePage }/>
+      <IndexRoute name="home" component={ MainPage }/>
+      <Route path="*" component={ MainPage }/>
     </Route>
   </Router>
 ), document.getElementById("main"));
